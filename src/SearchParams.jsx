@@ -1,11 +1,30 @@
 // import { set } from 'mongoose'
+import { Pet } from './Pet'
 import { useState, useEffect } from 'react'
 const ANIMALS = ['BIRB', 'KITTERS', 'DOGE', 'LIZARD WIZARD', 'SWIMMY BOIS', 'TORTORTLETER', 'REMY']
 const SearchParams = () => {
     const [location, setLocation] = useState("")
     const [animal, setAnimal] = useState("")
     const [breed, setBreed] = useState("")
+    const [pets, setPets] = useState([]) //array of pets we retrieved from API
     const breeds = [] //made an empty array as placeholder undtil we get the api for breeds
+    
+    useEffect(() => {
+        //sends a function that goes out to api and requests pets from api
+        requestPets();
+    }, [])
+
+    async function requestPets() {
+        //fetches pets from api
+        const res = await fetch(    
+            `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`
+        )
+
+        const json = await res.json()
+
+        setPets(json.pets)
+    };
+    
     return (
         <div className="search-params">
             <form>
@@ -56,6 +75,14 @@ const SearchParams = () => {
                 <h4>"More pushups!!" or whatever David Goggins says</h4>
                 <button>Submit</button>
             </form>
+            {pets.map((pet) => (
+                    <Pet
+                        name={pet.name}
+                        animal={pet.animal}
+                        breed={pet.breed}
+                        key={pet.id}
+                    />
+                ))}
         </div>
     )
 }
