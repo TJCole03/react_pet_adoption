@@ -1,7 +1,7 @@
 // import React from 'react'
 // import ReactDOM from 'react-dom'
 import {createRoot} from "react-dom/client"
-import Pet from './Pet'
+// import Pet from './Pet'
 import SearchParams from "./SearchParams";
 
 const App = () => {
@@ -9,9 +9,9 @@ const App = () => {
     <div>
       <h1>Adopt Me!</h1>
       <SearchParams />
-      <Pet name="Charmeleon" animal="Flame Lizard" breed="Fire" />
+      {/* <Pet name="Charmeleon" animal="Flame Lizard" breed="Fire" />
       <Pet name="Big Hawk" animal="Chicken" breed="Aggressive" />
-      <Pet name="Strapped Panda" animal="Endangered" breed="Once per year" />
+      <Pet name="Strapped Panda" animal="Endangered" breed="Once per year" /> */}
     </div>
   )
 };
