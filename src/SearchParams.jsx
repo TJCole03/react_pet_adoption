@@ -1,18 +1,26 @@
 // import { set } from 'mongoose'
-import { Pet } from './Pet'
+import Pet from './Pet.jsx'
 import { useState, useEffect } from 'react'
-const ANIMALS = ['BIRB', 'KITTERS', 'DOGE', 'LIZARD WIZARD', 'SWIMMY BOIS', 'TORTORTLETER', 'REMY']
+import useBreedList from './useBreedList.js'
+// const ANIMALS = ['BIRB', 'KITTERS', 'DOGE', 'LIZARD WIZARD', 'SWIMMY BOIS', 'TORTORTLETER', 'REMY']
+const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"]
 const SearchParams = () => {
     const [location, setLocation] = useState("")
     const [animal, setAnimal] = useState("")
     const [breed, setBreed] = useState("")
     const [pets, setPets] = useState([]) //array of pets we retrieved from API
-    const breeds = [] //made an empty array as placeholder undtil we get the api for breeds
+    const [breeds] = useBreedList(animal) //made an empty array as placeholder undtil we get the api for breeds
     
+
     useEffect(() => {
         //sends a function that goes out to api and requests pets from api
         requestPets();
-    }, [])
+    }, []) 
+    
+    //dependencies ask "when do i run again?"
+    //by giving an empty aray the anser is: only once! so
+    //it'll do the first render without using this effect
+    //immediately after render has finished, THEN run USEEFFECT
 
     async function requestPets() {
         //fetches pets from api
@@ -27,7 +35,11 @@ const SearchParams = () => {
     
     return (
         <div className="search-params">
-            <form>
+            <form onSubmit={(e) => {
+                e.preventDefault();
+                requestPets()
+            }}
+            >
                 <label htmlFor="location">
                     Location 
                     <input
