@@ -1,7 +1,7 @@
 // import { set } from 'mongoose'
-import Pet from './Pet.jsx'
 import { useState, useEffect } from 'react'
 import useBreedList from './useBreedList.js'
+import Results from './Results.jsx'
 // const ANIMALS = ['BIRB', 'KITTERS', 'DOGE', 'LIZARD WIZARD', 'SWIMMY BOIS', 'TORTORTLETER', 'REMY']
 const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"]
 const SearchParams = () => {
@@ -87,14 +87,7 @@ const SearchParams = () => {
                 <h4>"More pushups!!" or whatever David Goggins says</h4>
                 <button>Submit</button>
             </form>
-            {pets.map((pet) => (
-                    <Pet
-                        name={pet.name}
-                        animal={pet.animal}
-                        breed={pet.breed}
-                        key={pet.id}
-                    />
-                ))}
+            <Results pets={pets} />
         </div>
     )
 }
