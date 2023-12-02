@@ -25,7 +25,8 @@ const SearchParams = () => {
     async function requestPets() {
         //fetches pets from api
         const res = await fetch(    
-            `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`
+            `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`,
+            {mode: 'no-cors'}
         )
 
         const json = await res.json()

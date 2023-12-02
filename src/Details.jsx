@@ -5,7 +5,7 @@ import fetchPet from "./FetchPet";
 //CANNOT AWAIT IN A RENDER FUNCTION
 const Details = () => {
     const { id } = useParams();
-    const results = useQuery(["details", id, fetchPet]) //giving useQuery a key of what we're requesting; 
+    const results = useQuery(["details", id], fetchPet) //giving useQuery a key of what we're requesting; 
         //^^^^the query key that will be provided to fetchPet.js^^^
         //if you dont have details, run fetchPet so the user can get the pets' details
     
@@ -23,10 +23,9 @@ const Details = () => {
         <div className="details">
             <div>
                 <h1>{pet.name}</h1>
-                <h2>{pet.animal} -- {pet.breed} -- {pet.city} -- {pet.state}
-                    <button>Adopt {pet.name}</button>
-                    <p>{performance.description}</p>
-                </h2>
+                <h2>{`${pet.animal} -- ${pet.breed} -- ${pet.city} -- ${pet.state}`}</h2>
+                <button>Adopt {pet.name}</button>
+                <p>{pet.description}</p>
             </div>
         </div>
     )
