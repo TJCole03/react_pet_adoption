@@ -23,16 +23,14 @@ const SearchParams = () => {
     //immediately after render has finished, THEN run USEEFFECT
 
     async function requestPets() {
-        //fetches pets from api
-        const res = await fetch(    
-            `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`,
-            {mode: 'no-cors'}
-        )
-
-        const json = await res.json()
-
-        setPets(json.pets)
-    };
+        const res = await fetch(
+            `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`, {
+                mode: 'no-cors'}
+        );  
+        const json = await res.json();
+    
+        setPets(json.pets);
+      }
     
     return (
         <div className="search-params">
