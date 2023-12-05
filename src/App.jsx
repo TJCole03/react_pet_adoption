@@ -10,8 +10,8 @@ import Details from './Details'
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: Infinity, 
-      cacheTime: Infinity,
+      staleTime: Infinity, //asking browser how long they want me to cache things
+      cacheTime: Infinity, //to cache for ten minutes 1000 * 60 * 10 
     }
   },
 })
@@ -19,7 +19,7 @@ const queryClient = new QueryClient({
 const App = () => {
   return (
     <BrowserRouter>
-      <QueryClientProvider client={queryClient}>
+      <QueryClientProvider client={queryClient}> //provides context for useQuery
         <header>
           <Link to="/">Adopt Me!</Link>
         </header>

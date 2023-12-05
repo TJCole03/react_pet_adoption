@@ -1,9 +1,9 @@
 const fetchPet = async ({ queryKey }) => {
     const id = queryKey[1];
-    const apiRes = await fetch(`http://pets-v2.dev-apis.com/pets?id=${id}`, {mode: 'cors'});
+    const apiRes = await fetch(`http://pets-v2.dev-apis.com/pets?id=${id}`, {mode: 'no-cors'});
   
     if (!apiRes.ok) {
-      throw new Error(`details/${id} fetch not ok`);
+      throw new Error(`details/${id} not fetching`);
     }
   
     return apiRes.json();
