@@ -1,8 +1,8 @@
 //import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Pet = (props) => {
-    const { name, animal, breed, images, location, id } = props;
+const Pet = (name, animal, breed, images, location, id) => {
+    // const { name, animal, breed, images, location, id } = props;
     let hero = "http://pets-images.dev-apis.com/pets/none.jpg"
     if (images.length) {
         hero = images[0]
@@ -15,6 +15,7 @@ const Pet = (props) => {
             <div className='info'>
                 <h1>{name}</h1>
                 <h2>{`${animal} — ${breed} — ${location}`}</h2>
+                {/* <h2>{animal} — {breed} — {location}</h2> */}
             </div>
         </Link>
     )

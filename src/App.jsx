@@ -9,8 +9,10 @@ import Details from './Details'
 //creating client
 const queryClient = new QueryClient({
   defaultOptions: {
-    staleTime: Infinity, //how long do you want me to cache things?
-    cacheTIme: Infinity, //cache this information forever
+    queries: {
+      staleTime: Infinity, 
+      cacheTime: Infinity,
+    }
   },
 })
 

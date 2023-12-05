@@ -4,7 +4,7 @@ import fetchPet from "./FetchPet";
 
 //CANNOT AWAIT IN A RENDER FUNCTION
 const Details = () => {
-    const { id } = useParams();
+    const { id } = useParams(); //this requires BrowserRouter in App.jsx
     const results = useQuery(["details", id], fetchPet()) //giving useQuery a key of what we're requesting; 
         //^^^^the query key that will be provided to fetchPet.js^^^
         //if you dont have details, run fetchPet so the user can get the pets' details
