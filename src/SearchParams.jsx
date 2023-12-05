@@ -1,7 +1,9 @@
 // import { set } from 'mongoose'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
 import useBreedList from './useBreedList.js'
 import Results from './Results.jsx'
+import fetchSearch from './fetchSearch.js'
 // const ANIMALS = ['BIRB', 'KITTERS', 'DOGE', 'LIZARD WIZARD', 'SWIMMY BOIS', 'TORTORTLETER', 'REMY']
 const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"]
 const SearchParams = () => {
@@ -27,7 +29,7 @@ const SearchParams = () => {
             `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`, {
                 mode: 'no-cors'}
         );  
-        const json = await res.json();
+        const json = await res.json(`${ANIMALS}`);
     
         setPets(json.pets);
       }
