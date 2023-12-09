@@ -1,5 +1,5 @@
 // import { set } from 'mongoose'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import useBreedList from './useBreedList.js'
 import Results from './Results.jsx'
@@ -7,48 +7,63 @@ import fetchSearch from './fetchSearch.js'
 // const ANIMALS = ['BIRB', 'KITTERS', 'DOGE', 'LIZARD WIZARD', 'SWIMMY BOIS', 'TORTORTLETER', 'REMY']
 const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"]
 const SearchParams = () => {
-    const [location, setLocation] = useState("")
+    const [requestParams, setRequestParams] = useState({
+        location: "", 
+        animal: "", 
+        breed: "", 
+    })
     const [animal, setAnimal] = useState("")
-    const [breed, setBreed] = useState("")
-    const [pets, setPets] = useState([]) //array of pets we retrieved from API
+    // const [pets, setPets] = useState([]) //array of pets we retrieved from API
     const [breeds] = useBreedList(animal) //made an empty array as placeholder undtil we get the api for breeds
     
 
-    useEffect(() => {
-        //sends a function that goes out to api and requests pets from api
-        requestPets();
-    }, []) 
-    
-    //dependencies ask "when do i run again?"
-    //by giving an empty aray the anser is: only once! so
-    //it'll do the first render without using this effect
-    //immediately after render has finished, THEN run USEEFFECT
+    const results = useQuery(["search", requestParams], fetchSearch)
+    const pets = results?.data?.pets ?? [];
 
-    async function requestPets() {
-        const res = await fetch(
-            `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`, {
-                mode: 'no-cors'}
-        );  
-        const json = await res.json(`${ANIMALS}`);
+
+
+    // useEffect(() => {
+    //     //sends a function that goes out to api and requests pets from api
+    //     requestPets();
+    // }, []) 
     
-        setPets(json.pets);
-      }
+    // //dependencies ask "when do i run again?"
+    // //by giving an empty aray the anser is: only once! so
+    // //it'll do the first render without using this effect
+    // //immediately after render has finished, THEN run USEEFFECT
+
+    // async function requestPets() {
+    //     const res = await fetch(
+    //         `https://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`, {
+    //             mode: 'no-cors'}
+    //     );  
+    //     const json = await res.json();
+    
+    //     setPets(json.pets);
+    //   }
     
     return (
         <div className="search-params">
             <form onSubmit={(e) => {
                 e.preventDefault();
-                requestPets()
+                //browser api; can feed it a form and it'll pull out all the data 
+                //on the form for you into an object
+                const formData = new FormData(e.target);
+                const obj = {
+                    animal: formData.get('animal') ?? "",
+                    breed: formData.get('breed') ?? "",
+                    location: formData.get('location') ?? "",
+                }
+                setRequestParams(obj)
             }}
             >
                 <label htmlFor="location">
                     Location 
                     <input
-                        onChange={(e) => setLocation(e.target.value)}
+                        name="location"
                         type="text"
                         id="location"
-                        value={location}
-                        placeholder="Where you looking?"
+                        placeholder="Location"
                     />
                 </label> 
                 <label htmlFor='animal'>
@@ -58,7 +73,7 @@ const SearchParams = () => {
                         value={animal}
                         onChange={(e) => {
                             setAnimal(e.target.value);
-                            setBreed("")
+                           // setBreed("")
                         }}
                     >
                         <option />
@@ -74,10 +89,7 @@ const SearchParams = () => {
                     <select
                         id="breed"
                         disabled={breeds.length === 0}
-                        value={breed}
-                        onChange={(e) => {
-                            setBreed(e.target.value)
-                        }}
+                        name="breed"
                     >
                         <option />
                         {breeds.map((breed) => (

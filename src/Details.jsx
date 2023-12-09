@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom"
 import { useQuery } from '@tanstack/react-query'
-import fetchPet from "./FetchPet";
+import  fetchPet  from './fetchPets'
 
 //CANNOT AWAIT IN A RENDER FUNCTION
 const Details = () => {

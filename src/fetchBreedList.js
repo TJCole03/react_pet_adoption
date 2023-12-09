@@ -4,7 +4,7 @@ async function fetchBreedList({ queryKey }) {
     if (!animal) return [];
   
     const apiRes = await fetch(
-      `http://pets-v2.dev-apis.com/breeds?animal=${animal}`, {mode: 'no-cors'}
+      `https://pets-v2.dev-apis.com/breeds?animal=${animal}`, {mode: 'no-cors'}
     );
   
     if (!apiRes.ok) {
