@@ -19,7 +19,8 @@ const queryClient = new QueryClient({
 const App = () => {
   return (
     <BrowserRouter>
-      <QueryClientProvider client={queryClient}> //provides context for useQuery
+      {/* provides context for useQuery */}
+      <QueryClientProvider client={queryClient}> 
         <header>
           <Link to="/">Adopt Me!</Link>
         </header>
