@@ -6,7 +6,7 @@ class Carousel extends Componenet {
     }
 
     static defaultProps = {
-        images: ["http://pets-images.dev-apis.com/pets/none.jpg"]
+        images: ["http://pets-images.dev-apis.com/pets/none.jpg"],
     }
         //"if you don't pass anything into the carousel put in this above image^^"
 
@@ -30,8 +30,22 @@ class Carousel extends Componenet {
         //useEffect combines all these types of lifecycle methods;
         //class components need it to be broken down into various different functinos
         //that describe the lifecycle of a component
+//works as an arrow function and not as a regular one; WHY????
+    
 
 
+    handleIndexClick = (e) => {
+        this.setState({
+            active: +e.target.dataset.index //index comes out of the DOM as a string
+        })
+        //every time you do an arrow funtion that doesn NOT create new scope vs
+        //when you have a normal function whenever you invike it,
+        //it creates a new scope at the point of the location
+        //so because this function is invoked as an event listener, it's invoked
+        //with no context
+        //this will capture the scope of wherever it was written
+}
+    
 //CLASS COMPONENTS AND HOOKS DO NOT MIX. CAN NEVER HAVE BOTH. CAN NEER HAVE BOTH CLASS COMPONENTES AND HOOKS
     render() { //returns jsx markup
         //use 'this' which is mutable state
@@ -46,6 +60,8 @@ class Carousel extends Componenet {
                 {images.map((photo, index) => (
                     //eslint-disable-next-line
                 <img 
+                    onClick={this.handleIndexClick}
+                    data-index={index}    
                     key={photo}
                     src={photo}
                     className={index === active ? "active" : ""}
