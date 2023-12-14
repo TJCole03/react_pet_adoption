@@ -1,9 +1,9 @@
 //import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Pet = (name, animal, breed, images, location, id) => {
-    // const { name, animal, breed, images, location, id } = props;
-    let hero = "https://pets-images.dev-apis.com/pets/none.jpg"
+const Pet = (props) => {
+    const { name, animal, breed, images, location, id } = props;
+    let hero = "http://pets-images.dev-apis.com/pets/none.jpg"
     if (images.length) {
         hero = images[0]
     }
