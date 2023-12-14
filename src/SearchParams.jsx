@@ -75,10 +75,13 @@ const SearchParams = () => {
                             setAnimal(e.target.value);
                            // setBreed("")
                         }}
+                        onBlur={(e) => {
+                            setAnimal(e.target.value)
+                        }}
                     >
                         <option />
-                        //this function didn't work at first b/c i used 
-                        // "{}" instead of "()". 
+                        {/* //this function didn't work at first b/c i used 
+                        // "{}" instead of "()".  */}
                         {ANIMALS.map((animal) => (
                             <option key={animal}>{animal}</option>
                         ))}

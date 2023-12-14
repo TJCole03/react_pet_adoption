@@ -1,6 +1,6 @@
 import { Component } from 'react'
 
-class Carousel extends Componenet {
+class Carousel extends Component {
     state = {
         active: 0
     }
@@ -39,17 +39,17 @@ class Carousel extends Componenet {
             active: +e.target.dataset.index //index comes out of the DOM as a string
         })
         //every time you do an arrow funtion that doesn NOT create new scope vs
-        //when you have a normal function whenever you invike it,
+        //when you have a normal function whenever you invoke it,
         //it creates a new scope at the point of the location
         //so because this function is invoked as an event listener, it's invoked
         //with no context
-        //this will capture the scope of wherever it was written
+        //this will capture the scope of wherever it was written because the function is invoked as an event listener
 }
     
-//CLASS COMPONENTS AND HOOKS DO NOT MIX. CAN NEVER HAVE BOTH. CAN NEER HAVE BOTH CLASS COMPONENTES AND HOOKS
+//CLASS COMPONENTS AND HOOKS DO NOT MIX. CAN NEVER HAVE BOTH. CAN NEER HAVE BOTH CLASS COMPONENTES AND HOOKS. CLASS COMPONENETS AND HOOKS DO NOT MIX
     render() { //returns jsx markup
         //use 'this' which is mutable state
-        //this.props is what is passed in fron the parent component
+        //this.props is what is passed in from the parent component
         const { active } = this.state
         const { images } = this.props //how we get images in this file 
 
