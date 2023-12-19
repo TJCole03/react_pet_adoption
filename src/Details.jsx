@@ -72,4 +72,4 @@ function DetailsErrorBoundary(props) {
 //seamless andpassed these props through seamlessly, right ? So this is what I would do here is basically say like I don't care what
 //props are coming in just go directly through the ErrorBoundary anddon't care about what's coming in, right ?
   
-  export default DetailsErrorBoundary;
+export default DetailsErrorBoundary;
