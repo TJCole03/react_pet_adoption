@@ -1,6 +1,7 @@
 // import { set } from 'mongoose'
-import { useState, useEffect } from 'react'
+import { useState, useContext } from 'react'
 import { useQuery } from '@tanstack/react-query'
+import AdoptedPetContext from './AdoptedPetContext.js'
 import useBreedList from './useBreedList.js'
 import Results from './Results.jsx'
 import fetchSearch from './fetchSearch.js'
@@ -15,7 +16,7 @@ const SearchParams = () => {
     const [animal, setAnimal] = useState("")
     // const [pets, setPets] = useState([]) //array of pets we retrieved from API
     const [breeds] = useBreedList(animal) //made an empty array as placeholder undtil we get the api for breeds
-    
+    const [adoptedPet, setAdoptedPet] = useContext(AdoptedPetContext)
 
     const results = useQuery(["search", requestParams], fetchSearch)
     const pets = results?.data?.pets ?? [];
@@ -56,7 +57,14 @@ const SearchParams = () => {
                 }
                 setRequestParams(obj)
             }}
-            >
+            > 
+                {
+                    adoptedpet ? (
+                        <div className="pet image-container">
+                            <img src={adoptedPet.images[0]} alt={adoptedPet.name} />
+                        </div>
+                    ) : null
+                }
                 <label htmlFor="location">
                     Location 
                     <input

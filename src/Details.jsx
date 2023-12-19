@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { useParams } from "react-router-dom"
+import { useState, useContext } from "react";
+import { useParams, useNavigate } from "react-router-dom"
 import { useQuery } from '@tanstack/react-query'
+import AdoptedPetContext from "./AdoptedPetContext";
 import ErrorBoundary from "./ErrorBoundary";
 import fetchPet from './fetchPets'
 import Carousel from "./Carousel";
@@ -9,6 +10,9 @@ import Modal from "./Modal";
 //CANNOT AWAIT IN A RENDER FUNCTION
 const Details = () => {
     const [showModal, setShowModal] = useState(false)
+    const navigate = useNavigate()
+    // eslint-disable-next-line no-unused-vars
+    const [_, setAdoptedPet] = useContext(AdoptedPetContext)
     const { id } = useParams(); //this requires BrowserRouter in App.jsx
     const results = useQuery(["details", id], fetchPet) //giving useQuery a key of what we're requesting; 
         //^^^^the query key that will be provided to fetchPet.js^^^
@@ -46,7 +50,10 @@ const Details = () => {
                                             Would you like to adopt {pet.name}?
                                         </h1>
                                         <div className="buttons">
-                                            <button>Yes</button>
+                                            <button onClick={() => {
+                                                setAdoptedPet(pet);
+                                                navigate("/")
+                                            }}>Yes</button>
                                             <button onClick={() => setShowModal(false)}>No</button>
                                         </div>
                                 </div>
