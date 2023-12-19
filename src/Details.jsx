@@ -1,11 +1,14 @@
+import { useState } from "react";
 import { useParams } from "react-router-dom"
 import { useQuery } from '@tanstack/react-query'
 import ErrorBoundary from "./ErrorBoundary";
 import fetchPet from './fetchPets'
 import Carousel from "./Carousel";
+import Modal from "./Modal";
 
 //CANNOT AWAIT IN A RENDER FUNCTION
 const Details = () => {
+    const [showModal, setShowModal] = useState(false)
     const { id } = useParams(); //this requires BrowserRouter in App.jsx
     const results = useQuery(["details", id], fetchPet) //giving useQuery a key of what we're requesting; 
         //^^^^the query key that will be provided to fetchPet.js^^^
@@ -30,9 +33,27 @@ const Details = () => {
             <div>
                 <h1>{pet.name}</h1>
                 {/* <h2>{`${pet.animal} -- ${pet.breed} -- ${pet.city} -- ${pet.state}`}</h2> */}
-                <h2>{pet.animal} -- {pet.breed} -- {pet.city} -- {pet.state}</h2>
+                <h2>{pet.animal} -- {pet.breed} -- {pet.city} -- {pet.state}
+                <button onClick={() => setShowModal(true)}>Adopt {pet.name}</button>
                 <button>Adopt {pet.name}</button>
                 <p>{pet.description}</p>
+                    {
+                        showModal ? //'if we have show modal'/ do we have showModal?
+                        ( 
+                            <Modal>
+                                <div>
+                                        <h1>
+                                            Would you like to adopt {pet.name}?
+                                        </h1>
+                                        <div className="buttons">
+                                            <button>Yes</button>
+                                            <button onClick={() => setShowModal(false)}>No</button>
+                                        </div>
+                                </div>
+                            </Modal>
+                        ) : null
+                    }
+                </h2>
             </div>
         </div>
     )

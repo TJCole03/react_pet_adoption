@@ -6,4 +6,4 @@ FrontEnd Masters React Lesson
   <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script> -->
 
 
-Portals basically allowed you to render to a different place from within a componentj. 
+ 
