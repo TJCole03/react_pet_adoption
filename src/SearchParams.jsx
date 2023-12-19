@@ -59,14 +59,14 @@ const SearchParams = () => {
             }}
             > 
                 {
-                    adoptedpet ? (
+                    adoptedPet ? (
                         <div className="pet image-container">
                             <img src={adoptedPet.images[0]} alt={adoptedPet.name} />
                         </div>
                     ) : null
                 }
                 <label htmlFor="location">
-                    Location 
+                    Location
                     <input
                         name="location"
                         type="text"
