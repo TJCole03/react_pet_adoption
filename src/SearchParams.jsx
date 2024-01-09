@@ -1,10 +1,10 @@
 // import { set } from 'mongoose'
 import { useState, useContext } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import AdoptedPetContext from './AdoptedPetContext.js'
-import useBreedList from './useBreedList.js'
+import AdoptedPetContext from './AdoptedPetContext.jsx'
+import useBreedList from './useBreedList.jsx'
 import Results from './Results.jsx'
-import fetchSearch from './fetchSearch.js'
+import fetchSearch from './fetchSearch.jsx'
 // const ANIMALS = ['BIRB', 'KITTERS', 'DOGE', 'LIZARD WIZARD', 'SWIMMY BOIS', 'TORTORTLETER', 'REMY']
 const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"]
 const SearchParams = () => {
@@ -108,7 +108,7 @@ const SearchParams = () => {
                         ))}
                     </select>
                 </label>
-                <h4>"More pushups!!" or whatever David Goggins says</h4>
+                <h4>More pushups!! or whatever David Goggins says</h4>
                 <button>Submit</button>
             </form>
             <Results pets={pets} />
