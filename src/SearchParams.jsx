@@ -16,8 +16,8 @@ const SearchParams = () => {
     const [animal, setAnimal] = useState("")
     // const [pets, setPets] = useState([]) //array of pets we retrieved from API
     const [breeds] = useBreedList(animal) //made an empty array as placeholder undtil we get the api for breeds
-    const [adoptedPet, setAdoptedPet] = useContext(AdoptedPetContext)
-
+    const [adoptedPet] = useContext(AdoptedPetContext)
+// , setAdoptedPet
     const results = useQuery(["search", requestParams], fetchSearch)
     const pets = results?.data?.pets ?? [];
 

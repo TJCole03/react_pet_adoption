@@ -16,7 +16,7 @@ const Modal = ({children}) => {
 
     useEffect(() => {
         const modalRoot = document.getElementById("modal")
-        modalRoot.appendChild(efRef.current);
+        modalRoot.appendChild(elRef.current);
 
         //how to do componenet will unmount in function components??
         return () => modalRoot.removeChild(elRef.current); 
