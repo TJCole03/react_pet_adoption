@@ -5,8 +5,8 @@ async function fetchSearch({ queryKey }) {
     //instead of giving things individual strings, we can give make then objects
     //our queryKey is an object in this projet
     
-    const res = await fetch(`https://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`,
-        { mode: 'no-cors' }
+    const res = await fetch(`https://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`,{'Access-Control-Allow-Origin' : '*', 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'}
+    // const res = await fetch(`https://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`,{ mode: 'no-cors' }
     )
 
     if (!res.ok) {
