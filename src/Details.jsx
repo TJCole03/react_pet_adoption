@@ -39,7 +39,7 @@ const Details = () => {
                 {/* <h2>{`${pet.animal} -- ${pet.breed} -- ${pet.city} -- ${pet.state}`}</h2> */}
                 <h2>{pet.animal} -- {pet.breed} -- {pet.city} -- {pet.state}
                 <button onClick={() => setShowModal(true)}>Adopt {pet.name}</button>
-                <button>Adopt {pet.name}</button>
+                {/* <button>Adopt {pet.name}</button> */}
                 <p>{pet.description}</p>
                     {
                         showModal ? //'if we have show modal'/ do we have showModal?
