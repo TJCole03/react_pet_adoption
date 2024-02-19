@@ -21,6 +21,12 @@ const queryClient = new QueryClient({
 const App = () => {
   const adoptedPet = useState(null)
   return (
+    //tailwind is adding utility classes for all the CSS you want to write
+    <div className="p-0 m-0" //p = padding, m = margin
+         style={{
+        background: "url(http://pets-images.dev-apis.com/pets/wallpaperC.jpg)",
+      }}
+    >
     <BrowserRouter>
       {/* provides context for useQuery */}
       <QueryClientProvider client={queryClient}> 
@@ -30,8 +36,8 @@ const App = () => {
           {/* makes adopted pet available to any consumer of adopted pet context inside of it
             Details and SearchParams have it available
           */}
-        <header>
-          <Link to="/">Adopt Me!</Link>
+        <header className="w-full mb-10 bg-gradient-to-b from from-green-400 via-blue-500 to-green-200 p-7 text-center" >
+          <Link className="text-6xl text-white hover:text-grey-200" to="/">Adopt Me!</Link>
         </header>
         <h1>Adopt Me!</h1>
         <Routes>
@@ -40,7 +46,8 @@ const App = () => {
           </Routes>
           </AdoptedPetContext.Provider>
       </QueryClientProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </div>  
   )
 };
 
