@@ -2,3 +2,21 @@
 @tailwind components; 
 @tailwind utilities;
 
+@layer base {
+  body {
+      font-family: "Arial black"
+    }
+}
+
+@layer components {
+  .search-input {
+    @apply w-60 mb-5 block;
+    font-family:'Courier New', Courier, monospace
+  }
+}
+
+@layer utilities {
+  .grayed-out-disabled{
+    @apply disabled:opacity-50;
+  }
+}
