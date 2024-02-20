@@ -44,8 +44,10 @@ const SearchParams = () => {
     //   }
     
     return (
-        <div className="search-params">
-            <form onSubmit={(e) => {
+        <div className="my-0 mx-auto w-11/12">
+            <form
+                className="p-10 mb-10 flex flex-col items-center justify-center rounded-lg bg-gray-200 shadow-lg"
+                onSubmit={(e) => {
                 e.preventDefault();
                 //browser api; can feed it a form and it'll pull out all the data 
                 //on the form for you into an object

@@ -37,7 +37,7 @@ const App = () => {
             Details and SearchParams have it available
           */}
         <header className="w-full mb-10 bg-gradient-to-b from from-green-400 via-blue-500 to-green-200 p-7 text-center" >
-          <Link className="text-6xl text-white hover:text-grey-200" to="/">Adopt Me!</Link>
+              <Link className="text-6xl text-white hover:text-gray-200" to="/">Adopt Me!</Link> 
         </header>
         <h1>Adopt Me!</h1>
         <Routes>
