@@ -1,12 +1,21 @@
 // import React from 'react'
 // import ReactDOM from 'react-dom'
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import { createRoot } from "react-dom/client"
 import { Link, BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import AdoptedPetContext from "./AdoptedPetContext";
-import SearchParams from "./SearchParams";
-import Details from './Details'
+// import SearchParams from "./SearchParams";
+// import Details from './Details'
+
+const Details = lazy(() => import('./Details'))
+/*
+
+  Import is a built in function by JavaScript; works like require used to for common JS; 
+  saying "if something tries to render details, panic and load details."
+
+*/
+const SearchParams = lazy(() => import('./SearchParams'))
 
 //creating client
 const queryClient = new QueryClient({
@@ -30,7 +39,8 @@ const App = () => {
     <BrowserRouter>
       {/* provides context for useQuery */}
       <QueryClientProvider client={queryClient}> 
-        <AdoptedPetContext.Provider value={adoptedPet}> 
+        <Suspense fallback={<div className="loading-pane"><h2 className="loader">Dog</h2></div>}>
+          <AdoptedPetContext.Provider value={adoptedPet}> 
           {/* we're passing the hook adoptedPet with the context; Provider is like wormhole. datatype does not matter; can be hook
           string, number etc. */}
           {/* makes adopted pet available to any consumer of adopted pet context inside of it
@@ -45,6 +55,7 @@ const App = () => {
           <Route path="/" element={<SearchParams />} />
           </Routes>
           </AdoptedPetContext.Provider>
+        </Suspense>
       </QueryClientProvider>
       </BrowserRouter>
     </div>  
