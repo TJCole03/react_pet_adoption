@@ -1,11 +1,13 @@
-import { useState, useContext } from "react";
+import { useState, useContext, lazy } from "react";
 import { useParams, useNavigate } from "react-router-dom"
 import { useQuery } from '@tanstack/react-query'
 import AdoptedPetContext from "./AdoptedPetContext";
 import ErrorBoundary from "./ErrorBoundary";
 import fetchPet from './fetchPets'
 import Carousel from "./Carousel";
-import Modal from "./Modal";
+
+
+const Modal = lazy(() => import('./Modal'))
 
 //CANNOT AWAIT IN A RENDER FUNCTION
 const Details = () => {
@@ -80,3 +82,30 @@ function DetailsErrorBoundary(props) {
 //props are coming in just go directly through the ErrorBoundary anddon't care about what's coming in, right ?
   
 export default DetailsErrorBoundary;
+
+/*
+
+BRIANS'S BLURB ABOUT SERVICE WORKERS: 
+
+Can we load stuff in the background? 
+The answer is yes, you definitely can. 
+We're now adding another factor of complexity here by doing that.
+The best way that I found to do that is you have a service worker.
+If you're not familiar with service workers,basically what they do is you have your application, 
+you have your API server.A service worker sits in the middle, soany time that your application makes 
+a request to your API,it goes through your service worker and out to the API, right?That's just how 
+service workers work. 
+What you can do is you can basically have your service worker, once it loads, 
+once your app is loaded, it can say, okay, the user is trying to load modal.
+The the user might try and load details, they might try and load this.
+So they basically go and grab all the pieces in the background, so that whenever modal 
+gets requested to the service worker, it can just say,guess what, I already have it.
+We're not gonna talk to the API right now, here you go, right?And so by having that 
+service worker sit in the middle of that, you can basically just serve those requests 
+as if they were happening instantaneously.And your user never has to know, and you don't 
+have to write your code anydifferently either, the service worker can handle all of that. 
+So the way that you do that is you have Vite or Parcel orWebpack generate a manifest of all the chunks.
+The service worker, once it's loaded and once your app is loaded,can look at that manifest and say,
+all right, cool, give me all of those chunks. 
+And then, it'll do that for you.Something like Remix actually does this for you already.
+ */
