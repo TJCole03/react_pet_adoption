@@ -1,8 +1,7 @@
 // import React from 'react'
 // import ReactDOM from 'react-dom'
 import { useState, lazy, Suspense } from "react";
-import { createRoot } from "react-dom/client"
-import { Link, BrowserRouter, Routes, Route } from "react-router-dom";
+import { Link, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import AdoptedPetContext from "./AdoptedPetContext";
 // import SearchParams from "./SearchParams";
@@ -36,7 +35,6 @@ const App = () => {
         background: "url(http://pets-images.dev-apis.com/pets/wallpaperC.jpg)",
       }}
     >
-    <BrowserRouter>
       {/* provides context for useQuery */}
       <QueryClientProvider client={queryClient}> 
         <Suspense fallback={<div className="loading-pane"><h2 className="loader">Dog</h2></div>}>
@@ -57,12 +55,9 @@ const App = () => {
           </AdoptedPetContext.Provider>
         </Suspense>
       </QueryClientProvider>
-      </BrowserRouter>
     </div>  
   )
 };
 
-const container = document.getElementById("root");
-const root = createRoot(container);
-root.render(<App />);
+export default App;
 
