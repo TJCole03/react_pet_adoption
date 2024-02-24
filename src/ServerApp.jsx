@@ -15,6 +15,21 @@ export default function render(url, opts) {
 
 /*
 
+So here, we have Vite building ServerApp.jsx; 
+We'll import what Vite built (ServerApp) into Node because 
+Node CANNOT read JSX; 
+Don't have to build our entire Node server, we only need to 
+build our ServerApp, which interfaces to our JSX; 
+We have to do this because Node CANNOT read JSX; 
+We need to have Vite build an output and have our 
+Node application import the built output
+
+ */
+
+
+
+/*
+
   renderToPipeableStream- can ONLY be run in Node. going to run 
     our application and going to run it into a 'node stream', 
     which is a thing that progressively renders the app 
