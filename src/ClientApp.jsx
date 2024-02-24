@@ -16,3 +16,11 @@ because there are no windows, alerts, documents, etc.
 have to make sure that anything that interacts with the DOM is 
 NOT loaded in Node, or else it breaks
 */
+
+/*
+
+Same as createRoot(), but is used to hydrate a container whose HTML contents were rendered by ReactDOMServer.
+Hydrate root is the same as createRoot() but it's used to hydrate/fulfill/water/whatever 
+a container whose HTML contents have been rendered by ReactDOMServer
+
+*/
